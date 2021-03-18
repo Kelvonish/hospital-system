@@ -1,0 +1,36 @@
+{% extends 'base.html' %} {% block content %}
+
+<form class="form-group col-4" action="" method="POST">
+    {% csrf_token %} {% if messages %}
+
+    <ul class="messages">
+        {% for message in messages %}
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            {{message}}
+        </div>
+        {% endfor %}
+    </ul>
+
+    {% endif %} {%csrf_token%} {{scheduleForm.as_p}}
+    <input type="submit" class="btn btn-primary" value="Add schedule">
+</form>
+
+<div class="col-md-4">
+    <table style="width:100%">
+        {%if schedules%}
+        <tr>
+            <th>Doctor Name</th>
+            <th>Date</th>
+
+        </tr>
+        {% for schedule in schedules %}
+        <tr>
+            <td>{{schedule.doctor}}</td>
+            <td>{{schedule.date}}</td>
+
+        </tr>
+        {% endfor %} {% endif %}
+    </table>
+</div>
+
+{% endblock %}

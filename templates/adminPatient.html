@@ -1,0 +1,44 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="col-md-4">
+    {%if schedules%}
+    <h3>Available date and time in doctors schedule</h3>
+    <table style="width:100%">
+
+        <tr>
+            <th>Doctor Name</th>
+            <th>Date</th>
+
+        </tr>
+        {% for schedule in schedules %}
+        <tr>
+            <td>{{schedule.doctor}}</td>
+            <td>{{schedule.date}}</td>
+            <td><a href="{% url 'book' pk=schedule.id %} " class="btn btn-primary">Book this day and time</a></td>
+
+        </tr>
+        {% endfor %} {% endif %}
+    </table>
+</div>
+<div class="col-md-4">
+    {%if appoint%}
+    <table style="width:100%">
+        <h3>My appointments</h3>
+        <tr>
+            <th>Doctor Name</th>
+            <th>Date</th>
+            <th>Action</th>
+
+        </tr>
+        {% for schedule in appoint %}
+        <tr>
+            <td>{{schedule.doctor}}</td>
+            <td>{{schedule.date_time}}</td>
+
+
+        </tr>
+        {% endfor %} {% endif %}
+    </table>
+</div>
+
+{% endblock %}

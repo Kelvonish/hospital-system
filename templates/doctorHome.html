@@ -1,0 +1,46 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="col-md-4">
+    {%if schedules%}
+    <h3>Appointments awaiting confirmation</h3>
+    <table style="width:100%">
+
+        <tr>
+            <th>Patient Name</th>
+            <th>Date</th>
+            <th>Action</th>
+
+        </tr>
+        {% for schedule in schedules %}
+        <tr>
+            <td>{{schedule.patient}}</td>
+            <td>{{schedule.date_time}}</td>
+            <td><a href="{% url 'confirm' pk=schedule.id %} " class="btn btn-primary">Confrim Appointment</a></td>
+
+        </tr>
+        {% endfor %} {% endif %}
+    </table>
+</div>
+
+<div class="col-md-4">
+    {%if confirmed%}
+    <h3>Confirmed Appointments</h3>
+    <table style="width:100%">
+
+        <tr>
+            <th>Doctor Name</th>
+            <th>Date</th>
+
+        </tr>
+        {% for schedule in schedules %}
+        <tr>
+            <td>{{schedule.patient}}</td>
+            <td>{{schedule.date_time}}</td>
+
+
+        </tr>
+        {% endfor %} {% endif %}
+    </table>
+</div>
+
+{% endblock %}
